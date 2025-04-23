@@ -86,10 +86,6 @@ ATTRIBUTES
    units :  degrees_north
    bounds : latitude_bounds
 
-bnds (bnds)
-Type: int32
-Values: 0,1
-
 z(z)
 ATTRIBUTES
   units : feet
@@ -105,7 +101,21 @@ ATTRIBUTES
   standard_name : time
   calendar : standard OR gregorian
   bounds : time_bounds
+
+bnds (bnds)
+Type: int32
+Values: 0,1
+
 ```
+
+## Horizontal grid resolution and specification
+
+* The standard resolution of the spatial grid is 0.25 degrees
+* Higher resolutions may be allowed
+* Currently some VAACs center their grids on X.0 while others center their grids on X.125.
+While it is preferential that VAACs define their grids so they can be easily overlapped, it is not possible
+currently for all VAACs to change their operational setup to allow this. However it seems that VAACs who have more
+frequent hand-offs do have similar setups. 
 
 ## Probabilistic File
 
