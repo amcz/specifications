@@ -5,27 +5,18 @@ This document outlines the standards and conventions for creating [Climate and F
 
 ## Table of Contents
 - [Global Attributes](#global-attributes)
-- [File Dimensions](#file-dimensions)
+- [Dimensions](#file-dimensions)
 - [Coordinate Variables](#coordinate-variables)
 - [Main Data Variable](#main-data-variable)
 - [Flight Levels](#flight-levels)
 - [Bounds Variables](#bounds-variables)
 - [Defining Mapping](#defining-mapping)
 - [Alternative Formulations](#alternative-formulations)
-- [References](#references)
+- [References](#-references)
 ---
 
-## 📦 File Structure
 
-A CF-compliant NetCDF file typically includes:
-
-- **Dimensions** – named axes of the data (e.g., time, latitude, longitude, level).
-- **Variables** – data arrays, each associated with a subset of the dimensions.
-- **Attributes** – metadata for the file or individual variables (units, standard names, etc.).
-
----
-
-## ✅ Global Attributes
+## ✅Global Attributes
 
 ```text
 title               : Volcanic ash air concentration forecast
@@ -54,7 +45,7 @@ product_type        : volcanic ash forecast
 * status, usage, and reason are utilized in IWXXM file
 * history is needed for CF compliance. Unclear what information it should contain.
 
-## 📦 File Dimensions
+## 📦Dimensions
 
 ### Concentration File 
 ```text
@@ -78,7 +69,8 @@ threshold: 4
 
 ---
 
-## 🧭 Coordinate Variables and their associated dimensions
+## 🧭Coordinate Variables
+and their associated dimensions
 
 ###  Concentration File
 ```text
@@ -160,6 +152,8 @@ ATTRIBUTES
 
 ## Flight Levels
 
+Data variable which provides vertical levels in FL 
+
 ```text
 flight_levels (z)
 values [25, 75, 125, 175, 225, 275, 325, 375, 425, 475, 525, 575]
@@ -174,7 +168,7 @@ ATTRIBUTES
  * no standard_name in CF tables
  * this data variable may be ommitted if flight_levels is utilized as a dimension/coordinate in the alternative formulation.
 
-## 🔗 Bounds Variables
+## Bounds Variables 
 
 These define spatial and temporal bounds for CF compliance.
 
@@ -193,7 +187,7 @@ flight_level_bounds (z, bnds)
 * z_bounds not needed if using alternative method of specifying vertical coordinate.
 ---
 
-## 🗺️ Defining Mapping 
+## Defining Mapping 
 
 ### `crs ()`
 
@@ -230,7 +224,7 @@ Then the latitude and longitude coordinates have dimensions  latitude(y) and lon
 
 - [CF Conventions](http://cfconventions.org/)
 - [Standard Name Table](http://cfconventions.org/standard-names.html)
+- [CF compliant units](https://www.unidata.ucar.edu/software/udunits/)
 - [NetCDF Format Guide](https://www.unidata.ucar.edu/software/netcdf/)
 - [xarray Docs](https://docs.xarray.dev/)
-- [NCO Tools](https://nco.sourceforge.net/)
 - [Volcano Names and IDs](https://volcano.si.edu/projects/vaac-data/)
