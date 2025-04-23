@@ -1,12 +1,18 @@
 # specifications
 # CF-Compliant NetCDF Specification Guide
 
-This document outlines the standards and conventions for creating [Climate and Forecast (CF)](http://cfconventions.org/) compliant NetCDF files for atmospheric and environmental data. The CF conventions aim to promote the processing and sharing of climate and forecast data using self-describing, portable NetCDF files.
+This document outlines the standards and conventions for creating [Climate and Forecast (CF)](http://cfconventions.org/) compliant NetCDF files for volcanic ash forecasts. The CF conventions aim to promote the processing and sharing of climate and forecast data using self-describing, portable NetCDF files. Two files types are describes. One contains information on ash concentrations while the other contains information on probabilities of exceedances of ash concentrations.
 
+## Table of Contents
 - [Global Attributes](#global-attributes)
 - [File Dimensions](#file-dimensions)
 - [Coordinate Variables](#coordinate-variables)
+- [Main Data Variable](#main-data-variable)
+- [Flight Levels](#flight-levels)
+- [Bounds Variables](#bounds-variables)
+- [Defining Mapping](#defining-mapping)
 - [Alternative Formulations](#alternative-formulations)
+- [References](#references)
 ---
 
 ## 📦 File Structure
@@ -25,25 +31,28 @@ A CF-compliant NetCDF file typically includes:
 title               : Volcanic ash air concentration forecast
 status              : NORMAL
 usage               : NON-OPERATIONAL
-reason              : test
-source              : HYSPLIT model
-institution         : XXXX
+reason              : TEST
+source              : dispersion model name
+institution         : name of originating institution
 reference           : URL for insitution / model
-history             : Audit trail of modifications (auto-generated)
-volcanoname         : Bezymianny (or unknown)
+history             : date created
+volcanoname         : Bezymianny
 vid                 : 300250
 release_location    : lat: XX.XXXN, lon: XX.XXXW
 meteorological_data : GFSQ
-Conventions         : "CF-1.9"  # or the applicable version
+Conventions         : "CF-1.9"  
 WMO_category        : Volcanic Ash
 WMO_originator      : KNES
-status_definitions  : 
-usage_definitions   :
-reason_definitions  :
+status_definitions  : NORMAL: first issuance; CORRECTION: correction to previous issuance
+usage_definitions   : OPERATIONAL: data may be used for operational purposes, NON-OPERATIONAL: Data should not be used for operational purposes but may be used for other purposes
+reason_definitions  : EXERCISE: produced for an exercise, TEST: produced for a test, HYPOTHETICAL: produced for possible future event
 product_type        : volcanic ash forecast
 ```
 
-* volcano names and volcano id (vid) should be taken from the Smithsonian list.
+* volcano names and volcano id (vid) should be taken from the Smithsonian list https://volcano.si.edu/projects/vaac-data/.
+* if volcano is unknown then 'unknown' should be used
+* status, usage, and reason are utilized in IWXXM file
+* history is needed for CF compliance. Unclear what information it should contain.
 
 ## 📦 File Dimensions
 
@@ -102,7 +111,7 @@ ATTRIBUTES
   units : hours since YYYY-MM-DD HH:MM:SSZ
   long_name: time at beginning of sampling period
   standard_name : time
-  calendar : standard
+  calendar : standard OR gregorian
   bounds : time_bounds
 ```
 
@@ -149,7 +158,7 @@ ATTRIBUTES
 ```
 * no appropriate standard_name exists with CF name tables for ash probability of exceedance.
 
-## Flight levels
+## Flight Levels
 
 ```text
 flight_levels (z)
@@ -163,6 +172,7 @@ ATTRIBUTES
 ```
  * hft or hecta-feet is not considered compliant as it combines SI prefix with English unit
  * no standard_name in CF tables
+ * this data variable may be ommitted if flight_levels is utilized as a dimension/coordinate in the alternative formulation.
 
 ## 🔗 Bounds Variables
 
@@ -202,7 +212,7 @@ flight_level_bounds (z, bnds)
 
 ### Alternative specification for vertical coordinate
 
-Some centers may use flight_level as the vertical coordinate and dimension in place of z. This may not work as well with some GIS software.
+Some centers may use flight_level as the vertical coordinate and dimension in place of z. This may not work as well with some GIS software which may not recognize 100 ft as a CF compliant unit.
 
 ### Alternative method for latitude and longitude dimension
 
@@ -223,3 +233,4 @@ Then the latitude and longitude coordinates have dimensions  latitude(y) and lon
 - [NetCDF Format Guide](https://www.unidata.ucar.edu/software/netcdf/)
 - [xarray Docs](https://docs.xarray.dev/)
 - [NCO Tools](https://nco.sourceforge.net/)
+- [Volcano Names and IDs](https://volcano.si.edu/projects/vaac-data/)
