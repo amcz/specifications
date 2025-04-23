@@ -3,6 +3,8 @@
 
 This document outlines the standards and conventions for creating [Climate and Forecast (CF)](http://cfconventions.org/) compliant NetCDF files for atmospheric and environmental data. The CF conventions aim to promote the processing and sharing of climate and forecast data using self-describing, portable NetCDF files.
 
+- [Global Attributes](#global-attributes)
+
 ---
 
 ## 📦 File Structure
@@ -15,7 +17,7 @@ A CF-compliant NetCDF file typically includes:
 
 ---
 
-## ✅ Required Global Attributes
+## ✅ Global Attributes
 
 ```text
 title               : Brief description of the dataset
@@ -25,38 +27,41 @@ history             : Audit trail of modifications (auto-generated)
 references          : Citations or documentation
 comment             : Additional information about the dataset
 Conventions         : "CF-1.10"  # or the applicable version
-
-
-# CF-Compliant NetCDF File Description
-
-This document describes the structure and metadata of a CF-compliant NetCDF file with multiple dimensions including ensemble, vertical levels, and spatial coordinates. This file contains gridded atmospheric data, with bounds for time, space, and vertical coordinates.
-
----
+```
 
 ## 📦 File Dimensions
 
+### Concentration File recommended
 ```text
-source: 1
-ens: 1
-time: 24
+time: unlimited
 bnds: 2
-y: 175
-x: 3601
+latitude: unlimited
+longitude: unlimited
 z: 12
 ```
+
+### Probabilistic File
+```text
+time: unlimited
+bnds: 2
+latitude: unlimited
+longitude: unlimited
+z: 12
+threshold: 4
+```
+
 
 ---
 
 ## 🧭 Coordinate Variables
 
-### `y (y)`
+### `latitude (latitude)`
 
 ```text
 Type: int64
-Values: 1322 to 1496 (175 values)
+Values: unlimited
 ```
-
-- **Associated coordinate**: `latitude (y)`
+- **Attributes**:
   - `standard_name = "latitude"`
   - `units = "degrees_north"`
 
