@@ -4,7 +4,9 @@
 This document outlines the standards and conventions for creating [Climate and Forecast (CF)](http://cfconventions.org/) compliant NetCDF files for atmospheric and environmental data. The CF conventions aim to promote the processing and sharing of climate and forecast data using self-describing, portable NetCDF files.
 
 - [Global Attributes](#global-attributes)
-
+- [File Dimensions](#file-dimensions)
+- [Coordinate Variables](#coordinate-variables)
+- [Alternative Formulations](#alternative-formulations)
 ---
 
 ## 📦 File Structure
@@ -203,6 +205,8 @@ Value: 0
   ```
 
 ---
+## Alternative formulations
+
 
 ## ✅ Recommendations
 
