@@ -112,7 +112,7 @@ Same coordinates as concentration file but with one additional coordinate.
 
   ```text
   threshold
-  Values: 0.2 2 5 10
+  Values: [0.2, 2, 5, 10]
   ATTRIBUTES
     units : mg m-3
     standard_name: volcanic_ash_air_concentration
@@ -123,75 +123,96 @@ Same coordinates as concentration file but with one additional coordinate.
   * different ways of specifying reference time for time coordinate may be used
 
 
-## 📊 Data Variables
+## 📊Main Data Variable
 
-### `SUM (source, ens, time, z, y, x)`
+### Concentration File
 
 ```text
-Type: float32
-Values: Mostly 0.0s (sample shown)
+ash_concentration (time, latitude, longitude, z)
+ATTRIBUTES
+   standard_name : mass_concentration_of_volcanic_ash_in_air
+   long_name : volcanic ash mass concentration in air as determined from model
+   units : mg m-3
+   cell_methods : time: mean withinbounds, longitude: mean within bounds, latitude: mean within bounds, z: mean within bounds
 ```
 
-- Suggested metadata:
-  - `long_name = "Accumulated field"` (replace with actual meaning)
-  - `units = "[appropriate units]"`
-  - `standard_name = [use CF table if possible]`
-  - `_FillValue = -9999.0` (or appropriate missing value)
-  - `coordinates = "time z latitude longitude"`
-  - `cell_methods = "time: sum"` (or other, depending on processing)
+* use appropriate description in cell methods
+* mg/m^3 is also CF compliant unit specification
 
----
+### Probabilistic File
+```text
+ash_probability (time, latitude, longitude, z, threshold)
+ATTRIBUTES
+   standard_name : probability_of_exceedance_of_volcanic_ash_air_concentration
+   long_name : probability that volcanic ash concentration exceeds threshold as determined from model
+   units : percent
+```
+* no appropriate standard_name exists with CF name tables for ash probability of exceedance.
+
+## Flight levels
+
+```text
+flight_levels (z)
+values [25, 75, 125, 175, 225, 275, 325, 375, 425, 475, 525, 575]
+ATTRIBUTES
+   standard_name : flight_level
+   long_name : flight levels at center of vertical level
+   bounds : flight_level_bounds
+   units : 100 feet
+   comment : flight level is defined as altitude in hundreds of feet
+```
+ * hft or hecta-feet is not considered compliant as it combines SI prefix with English unit
+ * no standard_name in CF tables
 
 ## 🔗 Bounds Variables
 
 These define spatial and temporal bounds for CF compliance.
 
-### `time_bounds (source, ens, time, bnds)`
-
-### `latitude_bounds (source, ens, y, bnds)`
-
-### `longitude_bounds (source, ens, x, bnds)`
-
-### `z_bounds (source, ens, z, bnds)`
-
-Each of these must be linked in the metadata of their corresponding coordinate variable:
-
 ```text
-time:bounds = "time_bounds"
-latitude:bounds = "latitude_bounds"
-longitude:bounds = "longitude_bounds"
-z:bounds = "z_bounds"
-```
+time_bounds (time bnds)
 
+latitude_bounds (latitude, bnds)
+
+longitude_bounds (longitude, bnds)
+
+z_bounds (z, bnds)
+
+flight_level_bounds (z, bnds)
+```
+* If not using temporal averaging then time_bounds does not need to be defined.
+* z_bounds not needed if using alternative method of specifying vertical coordinate.
 ---
 
-## 🗺️ CRS Variable
+## 🗺️ Defining Mapping 
 
-### `crs (source, ens)`
+### `crs ()`
 
-```text
-Type: int32
-Value: 0
-```
-
-- Include grid mapping metadata for spatial projection (if needed):
+- Include grid mapping metadata for spatial projection:
+- Below is example for spherical earth
   ```text
-  crs:grid_mapping_name = "latitude_longitude"
-  crs:semi_major_axis = 6378137.0
-  crs:inverse_flattening = 298.257223563
-  crs:epsg_code = "EPSG:4326"
+  ATTRIBUTES
+      crs:grid_mapping_name = latitude_longitude
+      earth_radius : 6378200.0
+      long_name : Spherical earth with radius 6371.2 km
+      comment : This grid uses spherical Earth approximation. No EPSG code applies.
   ```
 
 ---
 ## Alternative formulations
 
+### Alternative specification for vertical coordinate
 
-## ✅ Recommendations
+Some centers may use flight_level as the vertical coordinate and dimension in place of z. This may not work as well with some GIS software.
+
+### Alternative method for latitude and longitude dimension
+
+It is also CF compliant to define dimensions x, y instead of latitude, longitude.
+Then the latitude and longitude coordinates have dimensions  latitude(y) and longitude(x).
+
+
+## ✅ Checkers
 
 - Validate with [CF Checker](https://github.com/cedadev/cf-checker)
-- Ensure units are consistent and metadata is present
-- Clarify role of `source` and `ens` as auxiliary coordinates or dimension labels
-- Consider compression (`zlib=True`) and chunking for performance
 
 ---
 
