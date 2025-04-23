@@ -22,18 +22,32 @@ A CF-compliant NetCDF file typically includes:
 ## ✅ Global Attributes
 
 ```text
-title               : Brief description of the dataset
-institution         : Name of the institution that created the data
-source              : How the data was generated (e.g., model name, observational platform)
+title               : Volcanic ash air concentration forecast
+status              : NORMAL
+usage               : NON-OPERATIONAL
+reason              : test
+source              : HYSPLIT model
+institution         : XXXX
+reference           : URL for insitution / model
 history             : Audit trail of modifications (auto-generated)
-references          : Citations or documentation
-comment             : Additional information about the dataset
-Conventions         : "CF-1.10"  # or the applicable version
+volcanoname         : Bezymianny (or unknown)
+vid                 : 300250
+release_location    : lat: XX.XXXN, lon: XX.XXXW
+meteorological_data : GFSQ
+Conventions         : "CF-1.9"  # or the applicable version
+WMO_category        : Volcanic Ash
+WMO_originator      : KNES
+status_definitions  : 
+usage_definitions   :
+reason_definitions  :
+product_type        : volcanic ash forecast
 ```
+
+* volcano names and volcano id (vid) should be taken from the Smithsonian list.
 
 ## 📦 File Dimensions
 
-### Concentration File recommended
+### Concentration File 
 ```text
 time: unlimited
 bnds: 2
@@ -55,95 +69,59 @@ threshold: 4
 
 ---
 
-## 🧭 Coordinate Variables
+## 🧭 Coordinate Variables and their associated dimensions
 
-### `latitude (latitude)`
-
+###  Concentration File
 ```text
-Type: int64
-Values: unlimited
-```
-- **Attributes**:
-  - `standard_name = "latitude"`
-  - `units = "degrees_north"`
+latitude (longitude)
+ATTRIBUTES
+   standard_name : latitude
+   units :  degrees_north
+   bounds : latitude_bounds
 
-### `x (x)`
+longitude (longitude)
+ATTRIBUTES
+   standard_name : latitude
+   units :  degrees_north
+   bounds : latitude_bounds
 
-```text
-Type: int64
-Values: 1 to 3601
-```
-
-- **Associated coordinate**: `longitude (x)`
-  - `standard_name = "longitude"`
-  - `units = "degrees_east"`
-
-### `bnds (bnds)`
-
-```text
+bnds (bnds)
 Type: int32
-Values: 0, 1
+Values: 0,1
+
+z(z)
+ATTRIBUTES
+  units : feet
+  standard_name : height_above_mean_sea_level
+  positive : up
+  bounds : z_bounds
+  long_name : altitude at center of vertical level
+
+time(time)
+ATTRIBUTES
+  units : hours since YYYY-MM-DD HH:MM:SSZ
+  long_name: time at beginning of sampling period
+  standard_name : time
+  calendar : standard
+  bounds : time_bounds
 ```
 
-Used to define bounds for coordinates.
+## Probabilistic File
 
-### `latitude (y)`
+Same coordinates as concentration file but with one additional coordinate.
 
-```text
-Type: float64
-Values: 42.1 to 59.5
-```
+  ```text
+  threshold
+  Values: 0.2 2 5 10
+  ATTRIBUTES
+    units : mg m-3
+    standard_name: volcanic_ash_air_concentration
+    long_name: Threshold for exceedance probability
+  ```
 
-### `longitude (x)`
+  *  see alternative methods of specifying vertical coordinate
+  * different ways of specifying reference time for time coordinate may be used
 
-```text
-Type: float64
-Values: -180.0 to 180.0
-```
-
-### `z (z)`
-
-```text
-Type: float64
-Values: 761.5 to 17520 (Pa or meters depending on context)
-```
-
-- Suggested metadata:
-  - `standard_name = "air_pressure"` or "altitude"
-  - `units = "Pa"` or "m"
-  - `positive = "down"` (or "up")
-
-### `time (time)`
-
-```text
-Type: datetime64[ns]
-Values: 2020-10-21T20:45:00 to 2020-10-...
-```
-
-- Suggested metadata:
-  - `standard_name = "time"`
-  - `units = "hours since 2020-10-21 20:45:00"`
-  - `calendar = "gregorian"`
-
-### `ens (ens)`
-
-```text
-Type: <U2
-Value: 's1'
-```
-
-- Ensemble member label, can be included as an auxiliary coordinate.
-
-### `source (source)`
-
-```text
-Type: <U3
-Value: 'gfs'
-```
-
-- Source model label, can also be an auxiliary coordinate.
-
----
 
 ## 📊 Data Variables
 
