@@ -1,7 +1,7 @@
 # specifications
 # CF-Compliant NetCDF Specification Guide
 
-This document outlines the standards and conventions for creating [Climate and Forecast (CF)](http://cfconventions.org/) compliant NetCDF files for volcanic ash forecasts. The CF conventions aim to promote the processing and sharing of climate and forecast data using self-describing, portable NetCDF files. Two files types are describes. One contains information on ash concentrations while the other contains information on probabilities of exceedances of ash concentrations.
+This document outlines the standards and conventions for creating [Climate and Forecast (CF)](http://cfconventions.org/) compliant NetCDF files for volcanic ash forecasts. The CF conventions aim to promote the processing and sharing of climate and forecast data using self-describing, portable NetCDF files. Two file types are described. One contains information on ash concentrations while the other contains information on probabilities of exceedances of ash concentrations.
 
 ## Table of Contents
 - [Global Attributes](#global-attributes)
