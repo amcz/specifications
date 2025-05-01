@@ -79,12 +79,16 @@ ATTRIBUTES
    standard_name : latitude
    units :  degrees_north
    bounds : latitude_bounds
+   long_name : latitude degrees north from the equator
+   axis : Y 
 
 longitude (longitude)
 ATTRIBUTES
-   standard_name : latitude
+   standard_name : longitude
    units :  degrees_north
    bounds : latitude_bounds
+   long_name :  latitude degrees east from the greenwich meridian
+   axis : X
 
 z(z)
 ATTRIBUTES
@@ -93,6 +97,7 @@ ATTRIBUTES
   positive : up
   bounds : z_bounds
   long_name : altitude at center of vertical level
+  axis : Z
 
 time(time)
 ATTRIBUTES
@@ -101,6 +106,7 @@ ATTRIBUTES
   standard_name : time
   calendar : standard OR gregorian
   bounds : time_bounds
+  axis : T
 
 bnds (bnds)
 Type: int32
