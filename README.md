@@ -158,24 +158,25 @@ ATTRIBUTES
 
 ### Probabilistic File
 ```text
-ash_probability (time, latitude, longitude, z, threshold)
+ash_probability (threshold, time, latitude, longitude, z)
 ATTRIBUTES
    standard_name : probability_of_exceedance_of_volcanic_ash_air_concentration
    long_name : probability that volcanic ash concentration exceeds threshold as determined from model
    units : percent
 ```
 * no appropriate standard_name exists with CF name tables for ash probability of exceedance.
+* preferred dimension order is as listed but alternative formulations could have different orders
 
 ## Flight Levels
 
 Data variable which provides vertical levels in FL 
 
 ```text
-flight_levels (z)
+flight_level (z)
 values [25, 75, 125, 175, 225, 275, 325, 375, 425, 475, 525, 575]
 ATTRIBUTES
    standard_name : flight_level
-   long_name : flight levels at center of vertical level
+   long_name : flight level at center of vertical level
    bounds : flight_level_bounds
    units : 100 feet
    comment : flight level is defined as altitude in hundreds of feet
@@ -183,6 +184,7 @@ ATTRIBUTES
  * hft or hecta-feet is not considered compliant as it combines SI prefix with English unit
  * no standard_name in CF tables
  * this data variable may be ommitted if flight_levels is utilized as a dimension/coordinate in the alternative formulation.
+ * 07/31/2025 changed from flight_levels to flight_level
 
 ## Bounds Variables 
 
