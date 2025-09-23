@@ -13,6 +13,7 @@ This document outlines the standards and conventions for creating [Climate and F
 - [Defining Mapping](#defining-mapping)
 - [Alternative Formulations](#alternative-formulations)
 - [References](#-references)
+
 ---
 
 
@@ -38,6 +39,7 @@ status_definitions  : NORMAL: first issuance; CORRECTION: correction to previous
 usage_definitions   : OPERATIONAL: data may be used for operational purposes, NON-OPERATIONAL: Data should not be used for operational purposes but may be used for other purposes
 reason_definitions  : EXERCISE: produced for an exercise, TEST: produced for a test, HYPOTHETICAL: produced for possible future event
 product_type        : volcanic ash forecast
+remarks             :
 ```
 
 * volcano names and volcano id (vid) should be taken from the Smithsonian list https://volcano.si.edu/projects/vaac-data/.
