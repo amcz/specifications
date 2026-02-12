@@ -76,7 +76,7 @@ and their associated dimensions
 
 ###  Concentration File
 ```text
-latitude (longitude)
+latitude (latitude)
 ATTRIBUTES
    standard_name : latitude
    units :  degrees_north
@@ -87,9 +87,9 @@ ATTRIBUTES
 longitude (longitude)
 ATTRIBUTES
    standard_name : longitude
-   units :  degrees_north
-   bounds : latitude_bounds
-   long_name :  latitude degrees east from the greenwich meridian
+   units :  degrees_east
+   bounds : longitude_bounds
+   long_name :  longitude degrees east from the greenwich meridian
    axis : X
 
 z(z)
