@@ -24,7 +24,7 @@ title               : Volcanic ash air concentration forecast
 status              : NORMAL
 usage               : NON-OPERATIONAL
 reason              : TEST
-source              : VAAC [VAAC NAME] QVA
+source              : dispersion model
 institution         : name of originating institution
 reference           : URL for insitution / model
 history             : date created
