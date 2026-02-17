@@ -199,7 +199,7 @@ ATTRIBUTES
 ```text
 time(time)
 ATTRIBUTES
-  units : hours since YYYY-MM-DD HH:MM:SSZ
+  units : hours/minutes since YYYY-MM-DD HH:MM:SSZ
   long_name: time
   standard_name : time
   calendar : standard OR gregorian
