@@ -19,7 +19,7 @@ Conventions: "CF-1.9" # or another version
 title      : Volcanic ash air concentration forecast
 institution: name of originating institution
 history    : date created
-source     : dispersion model name
+source     : VAAC [NAME] QVA   # for example VAAC LONDON QVA
 event_type : OPERATIONAL
 volcano_id : "300250"
 ```
