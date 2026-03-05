@@ -20,13 +20,13 @@ title      : Volcanic ash air concentration forecast
 institution: name of originating institution
 history    : date created
 source     : VAAC [NAME] QVA   # for example VAAC LONDON QVA
-event_type : OPERATIONAL
+event_type : TEST      # REAL EVENT, TEST, EXERCISE are allowed
 volcano_id : "300250"
 ```
 
 * volcano id (volcano_id) should be taken from the [Smithsonian list](https://volcano.si.edu/projects/vaac-data/)
 * if volcano is unknown then 'none' should be used for volcano_id
-* event_type replace usage, and reason that are utilized in IWXXM file
+* event_type replace PermissibleUsage and PermissibleUsageReason that are used in IWXXM files
 * history is needed for CF compliance. Unclear what information it should contain.
 
 Other global attributes **can** be added, as an  example :  
