@@ -32,7 +32,7 @@ volcano_id : "300250"
 Other global attributes **can** be added, as an  example :  
 
 ```yaml
-issue_time         : when forecaters issued the data 
+issue_time         : when forecaters issued the data (in iso 8601 format, e.g. 2026-03-04T13:34:00Z)
 usage              : OPERATIONAL/NON-OPERATIONAL
 reason             : none, EXERCISE or TEST (none when OPERATIONAL)
 run_time           : runtime of the model (when it was launched)
