@@ -20,7 +20,7 @@ title      : Volcanic ash air concentration forecast
 institution: name of originating institution
 history    : date created
 source     : VAAC [NAME] QVA   # for example VAAC LONDON QVA
-event_type : TEST      # REAL EVENT, TEST, EXERCISE are allowed
+event_type : TEST      # REAL EVENT (or OPERATIONAL), TEST, EXERCISE are allowed
 volcano_id : "300250"
 ```
 
