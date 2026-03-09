@@ -143,7 +143,7 @@ flight_level(flight_level) ;
 values [25, 75, 125, 175, 225, 275, 325, 375, 425, 475, 525, 575]
 ATTRIBUTES
 		long_name       : flight level 
-		units           : hetctofeet (or hectoft, hft, 100 ft, etc...)
+		units           : hectofeet (or hectoft, hft, etc...)
 		axis            : Z 
 		positive        : up 
 		reference_datum : sea level pressure datum of 1013.25 hPa 
@@ -165,7 +165,7 @@ flight_level_bounds(flight_level, bnds)
 - flight_level(flight_level) ;
 + z(z)
 ATTRIBUTES
-- units        : 100 ft (or hectoft, hft, etc...)
+- units        : hectofeet (or hectoft, hft, etc...)
 + units        : feet
   standard_name: height_above_mean_sea_level
   positive     : up
@@ -189,7 +189,7 @@ ATTRIBUTES
    standard_name : flight_level
    long_name : flight level at center of vertical level
    bounds : flight_level_bounds
-   units : 100 feet
+   units : hectofeet
    comment : flight level is defined as altitude in hundreds of feet
 ```
 
