@@ -35,8 +35,10 @@ Other global attributes **can** be added, as an  example :
 issue_time         : when forecaters issued the data (in iso 8601 format, e.g. 2026-03-04T13:34:00Z)
 usage              : OPERATIONAL/NON-OPERATIONAL
 reason             : none, EXERCISE or TEST (none when OPERATIONAL)
-reference          : URL for insitution / model
+reference          : URL for institution / model
 volcano_name       : Bezymianny
+# Many volcano names are complicated (sometimes with special characters) and
+# therefore can be ambiguous
 release_location   : "lat: XX.XXXN, lon: XX.XXXW"
 meteorological_data: GFSQ
 comments           :
