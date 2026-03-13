@@ -78,24 +78,28 @@ Other global attributes could potentially be added.
 
 ## 📦Dimensions
 
+
 ### Concentration File 
 ```text
-time: unlimited
 bnds: 2
+time: unlimited
+z: 12    # alternative flight_levels
 latitude: unlimited
 longitude: unlimited
-z: 12
 ```
 
 ### Probabilistic File
 ```text
+threshold : 4
+bnds : 2
 time: unlimited
-bnds: 2
+z : 12   # alternative flight_levels
 latitude: unlimited
 longitude: unlimited
-z: 12
-threshold: 4
 ```
+
+
+
 
 
 ---
@@ -168,7 +172,8 @@ Same coordinates as concentration file but with one additional coordinate.
   ```
 
   *  see alternative methods of specifying vertical coordinate
-  * different ways of specifying reference time for time coordinate may be used
+  *  mg/m^3 may also be used
+  *  different ways of specifying reference time for time coordinate may be used
 
 
 ## 📊Main Data Variable
@@ -176,7 +181,8 @@ Same coordinates as concentration file but with one additional coordinate.
 ### Concentration File
 
 ```text
-ash_concentration (time, latitude, longitude, z)
+ash_concentration (time, z, latitude, longitude)
+ash_concentration (time, flight_level, latitude, longitude)  # London and Toulouse
 ATTRIBUTES
    standard_name : mass_concentration_of_volcanic_ash_in_air
    long_name : volcanic ash mass concentration in air as determined from model
@@ -189,14 +195,27 @@ ATTRIBUTES
 
 ### Probabilistic File
 ```text
-ash_probability (threshold, time, latitude, longitude, z)
+ash_probability (threshold, time, z, latitude, longitude)  # Generic
+ash_probability (threshold, time, flight_level, latitude, longitude, # Toulouse
+ash_probability (time, threshold, flight_level, latitude, longitude) # London
 ATTRIBUTES
    standard_name : probability_of_exceedance_of_volcanic_ash_air_concentration
    long_name : probability that volcanic ash concentration exceeds threshold as determined from model
    units : percent
 ```
 * no appropriate standard_name exists with CF name tables for ash probability of exceedance.
-* preferred dimension order is as listed but alternative formulations could have different orders
+* Toulouse and London have differing dimension orders. 
+
+### Dimension order
+
+The order of the dimensions can be important for some software packages that ingest the netcdf.
+From the CF convention, it is recommanded to use threshold as first dimension (VAAC Toulouse choice): « If any or all of the dimensions of a variable have the interpretations of "date or time" (T), "height or depth" (Z), "latitude" (Y), or "longitude" (X) then we recommend, but do not require (see Section 1.5, "Relationship to the COARDS Conventions"), those dimensions to appear in the relative order T, then Z, then Y, then X in the CDL definition corresponding to the file. All other dimensions should, whenever possible, be placed to the left of the spatiotemporal dimensions.»
+
+But, using time as first dimension is also expected to be more efficient if API requests tend to retrieve data by time (VAAC London choice).
+
+A similar discussion can be found in cf-convention discussion repository where keeping the recommended order is suggested as well as to using chunks in netcdf to match access patterns.
+
+VAAC London and VAAC Toulouse are both reluctant to change, to avoid a step back later, but highlight that difference in their documentations for end users.
 
 ## Flight Levels
 
