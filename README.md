@@ -125,15 +125,6 @@ ATTRIBUTES
    long_name :  longitude degrees east from the greenwich meridian
    axis : X
 
-z(z)
-ATTRIBUTES
-  units : feet
-  standard_name : height_above_mean_sea_level
-  positive : up
-  bounds : z_bounds
-  long_name : altitude at center of vertical level
-  axis : Z
-
 time(time)
 ATTRIBUTES
   units : hours since YYYY-MM-DD HH:MM:SSZ
@@ -147,6 +138,37 @@ bnds (bnds)
 Type: int32
 Values: 0,1
 
+```
+
+#### Vertical Coordinate
+
+
+NOAA is using with the flight_level data variable
+```
+z(z)
+ATTRIBUTES
+  units : feet
+  standard_name : height_above_mean_sea_level
+  positive : up
+  bounds : z_bounds
+  long_name : altitude at center of vertical level
+  axis : Z
+```
+
+London and Toulouse are using flight_level vertical coordinat in place of 'z'
+
+```
+flight_level(flight_level) ;
+values [25, 75, 125, 175, 225, 275, 325, 375, 425, 475, 525, 575]
+ATTRIBUTES
+		long_name       : flight level 
+		units           : hectofeet (or hectoft, hft, etc...)
+		axis            : Z 
+		positive        : up 
+		reference_datum : sea level pressure datum of 1013.25 hPa 
+		bounds          : flight_level_bounds 
+
+flight_level_bounds(flight_level, bnds)
 ```
 
 ## Horizontal grid resolution and specification
@@ -233,7 +255,8 @@ ATTRIBUTES
 ```
  * hft or hecta-feet is not considered compliant as it combines SI prefix with English unit
  * no standard_name in CF tables
- * this data variable may be ommitted if flight_levels is utilized as a dimension/coordinate in the alternative formulation.
+ * this data variable may be ommitted if flight_levels is utilized as a dimension/coordinate in the alternative formulation
+ * London and Toulous utilize flight_level as a dimension/coordinate rather than a data variable
  * 07/31/2025 changed from flight_levels to flight_level
 
 ## Bounds Variables 
