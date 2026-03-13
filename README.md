@@ -19,33 +19,62 @@ This document outlines the standards and conventions for creating [Climate and F
 
 ## ✅Global Attributes
 
+---
+Required
 ```text
 title               : Volcanic ash air concentration forecast
-status              : NORMAL
-usage               : NON-OPERATIONAL
-reason              : TEST
-source              : dispersion model
+Conventions         : "CF-1.9"  # or other
 institution         : name of originating institution
-reference           : URL for insitution / model
+source              : VAAC [NAME] QVA   # for example VAAC LONDON QVA
 history             : date created
-volcanoname         : Bezymianny
-vid                 : 300250
-release_location    : lat: XX.XXXN, lon: XX.XXXW
-meteorological_data : GFSQ
-Conventions         : "CF-1.9"  
-WMO_category        : Volcanic Ash
-WMO_originator      : KNES
-status_definitions  : NORMAL: first issuance; CORRECTION: correction to previous issuance
-usage_definitions   : OPERATIONAL: data may be used for operational purposes, NON-OPERATIONAL: Data should not be used for operational purposes but may be used for other purposes
-reason_definitions  : EXERCISE: produced for an exercise, TEST: produced for a test, HYPOTHETICAL: produced for possible future event
-product_type        : volcanic ash forecast
-remarks             :
+volcano_id          : 300250
+```
+* volcano id (vid) should be taken from the Smithsonian list https://volcano.si.edu/projects/vaac-data/.
+* if volcano is unknown then 'none' should be used
+  
+
+---
+Required
+```
+reportStatus            : NORMAL
+permissableUsage        : NON-OPERATIONAL
+permissableUsageReason  : TEST
+reportStatus_definitions  : NORMAL: first issuance; CORRECTION: correction to previous issuance
+permissableUsage_definitions   : OPERATIONAL: data may be used for operational purposes, NON-OPERATIONAL: Data should not be used for operational purposes but may be used for other purposes
+permissableUsageReason_definitions  : EXERCISE: produced for an exercise, TEST: produced for a test, HYPOTHETICAL: produced for possible future event
+remarks                  :
 ```
 
-* volcano names and volcano id (vid) should be taken from the Smithsonian list https://volcano.si.edu/projects/vaac-data/.
-* if volcano is unknown then 'unknown' should be used
-* status, usage, and reason are utilized in IWXXM file
-* history is needed for CF compliance. Unclear what information it should contain.
+* reportStatus, permissableUsage, and permissableUsageReason are fields in the IWXXM file which should be included in the netcdf so end users receive the same information.
+
+* remarks have also been added to iwxxm and should be available in netcdf.
+
+**points for discussion**
+London and Toulouse VAAC propose using event_type to  replace PermissibleUsage and PermissibleUsageReason that are used in IWXXM files
+```
+event_type : TEST      # REAL EVENT (or OPERATIONAL), TEST, EXERCISE are allowed
+```
+
+---
+Recommended
+
+```
+
+reference           : URL for insitution / model
+volcanoname         : Bezymianny
+release_location    : lat: XX.XXXN, lon: XX.XXXW
+meteorological_data : GFSQ  # short identifier for NWP data utilized
+WMO_category        : Volcanic Ash
+WMO_originator      : KNES   # unique VAAC identifier
+product_type        : volcanic ash forecast
+
+```
+
+* volcano names should be taken from the Smithsonian list https://volcano.si.edu/projects/vaac-data/.
+* if volcano is unknown then 'unknown' should be used for volcano_name
+* WMO_originator is a unique identifier for each VAAC
+
+Other global attributes could potentially be added.
 
 ## 📦Dimensions
 
