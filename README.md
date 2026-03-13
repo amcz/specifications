@@ -16,6 +16,15 @@ This document outlines the standards and conventions for creating [Climate and F
 
 ---
 
+## Summary of updates
+
+#### 13 March 2026
+* Added specifications for London and Toulouse harmonized format.
+* It was clarified that hft (hecta-feet) is a CF compliant unit
+* Consequently using flight_level as a coordinate rather than data variable is recommended
+* dimension order was clarified
+* dimension order for probabilistic data is still under discussion
+
 
 ## ✅Global Attributes
 
@@ -31,6 +40,7 @@ volcano_id          : 300250
 ```
 * volcano id (vid) should be taken from the Smithsonian list https://volcano.si.edu/projects/vaac-data/.
 * if volcano is unknown then 'none' should be used
+* volcano_id was previously vid
   
 
 ---
@@ -46,8 +56,9 @@ remarks                  :
 ```
 
 * reportStatus, permissableUsage, and permissableUsageReason are fields in the IWXXM file which should be included in the netcdf so end users receive the same information.
-
+* these were previously status, usage, reason
 * remarks have also been added to iwxxm and should be available in netcdf.
+
 
 **points for discussion**
 London and Toulouse VAAC propose using event_type to  replace PermissibleUsage and PermissibleUsageReason that are used in IWXXM files
@@ -56,7 +67,7 @@ event_type : TEST      # REAL EVENT (or OPERATIONAL), TEST, EXERCISE are allowed
 ```
 
 ---
-Recommended
+For discussion - Recommended
 
 ```
 
@@ -164,7 +175,7 @@ flight_level_bounds(flight_level, bnds)
 Propose using flight_level as the coordinate, but keeping z as the dimension.
 
 
-Alternative forumation
+Alternative forumlation
 ```
 z(z)
 ATTRIBUTES
