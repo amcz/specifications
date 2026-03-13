@@ -83,7 +83,7 @@ Other global attributes could potentially be added.
 ```text
 bnds: 2
 time: unlimited
-z: 12    # alternative flight_levels
+z: 12    # alternative flight_level
 latitude: unlimited
 longitude: unlimited
 ```
@@ -93,7 +93,7 @@ longitude: unlimited
 threshold : 4
 bnds : 2
 time: unlimited
-z : 12   # alternative flight_levels
+z : 12   # alternative flight_level
 latitude: unlimited
 longitude: unlimited
 ```
@@ -143,19 +143,8 @@ Values: 0,1
 #### Vertical Coordinate
 
 
-NOAA is using with the flight_level data variable
-```
-z(z)
-ATTRIBUTES
-  units : feet
-  standard_name : height_above_mean_sea_level
-  positive : up
-  bounds : z_bounds
-  long_name : altitude at center of vertical level
-  axis : Z
-```
 
-London and Toulouse are using flight_level vertical coordinat in place of 'z'
+**London and Toulouse are using the following**
 
 ```
 flight_level(flight_level) ;
@@ -170,6 +159,24 @@ ATTRIBUTES
 
 flight_level_bounds(flight_level, bnds)
 ```
+
+**discussion**
+Propose using flight_level as the coordinate, but keeping z as the dimension.
+
+
+Alternative forumation
+```
+z(z)
+ATTRIBUTES
+  units : feet
+  standard_name : height_above_mean_sea_level
+  positive : up
+  bounds : z_bounds
+  long_name : altitude at center of vertical level
+  axis : Z
+```
+
+
 
 ## Horizontal grid resolution and specification
 
@@ -239,9 +246,10 @@ A similar discussion can be found in cf-convention discussion repository where k
 
 VAAC London and VAAC Toulouse are both reluctant to change, to avoid a step back later, but highlight that difference in their documentations for end users.
 
-## Flight Levels
+## Flight Level
 
-Data variable which provides vertical levels in FL 
+Data variable which provides vertical levels in FL.
+
 
 ```text
 flight_level (z)
@@ -250,10 +258,10 @@ ATTRIBUTES
    standard_name : flight_level
    long_name : flight level at center of vertical level
    bounds : flight_level_bounds
-   units : 100 feet
+   units : hft 
    comment : flight level is defined as altitude in hundreds of feet
 ```
- * hft or hecta-feet is not considered compliant as it combines SI prefix with English unit
+ * It has been clarified that hft, hecta-feet is CF compliant see https://github.com/cf-convention/cf-conventions/issues/620
  * no standard_name in CF tables
  * this data variable may be ommitted if flight_levels is utilized as a dimension/coordinate in the alternative formulation
  * London and Toulous utilize flight_level as a dimension/coordinate rather than a data variable
