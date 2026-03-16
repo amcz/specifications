@@ -249,7 +249,7 @@ or cell_methods : time: mean flight_level (or z): mean latitude: mean longitude:
 ### VAAC London
 
 ```text
-ash_probability (threshold, time, flight_level or z, latitude, longitude)
+ash_probability (time, threshold, flight_level or z, latitude, longitude)
 ATTRIBUTES
    long_name : probability_of_mass_concentration_of_volcanic_ash_in_air_above_threshold
    units : percent
