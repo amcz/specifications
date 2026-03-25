@@ -102,6 +102,7 @@ meteorological_data : GFSQ  # short identifier for NWP data utilized
 WMO_category        : Volcanic Ash
 WMO_originator      : KNES   # unique VAAC identifier
 product_type        : volcanic ash forecast
+release_location    : "lat: XX.XXXN, lon: XX.XXXW"
 
 ```
 
@@ -113,6 +114,7 @@ product_type        : volcanic ash forecast
 
 ```
 volcano_number   : redundant with volcano_id
+issue_time       : when forecasters issued the data (in iso 8601 format, e.g. 2026-03-04T13:34:00Z)
 
 ```
 
