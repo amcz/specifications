@@ -109,7 +109,36 @@ latitude: unlimited
 longitude: unlimited
 ```
 
+### Dimension order
+We recommend that software is designed so that dimension order does not matter.
 
+#### Recommended Dimension Order for NetCDF Variables according to CF convention
+
+According to the CF convention, the recommended order for spatiotemporal dimensions is:
+
+1. **T** – Time (`date or time`)
+2. **Z** – Height or depth
+3. **Y** – Latitude
+4. **X** – Longitude
+
+All other dimensions (e.g., `threshold`, `ensemble`, etc.) should, whenever possible, be placed **to the left** of the spatiotemporal dimensions.
+However using time as a first dimension is expected to be more efficient if the API requests tend to retrieve data by time.
+Consequently 
+
+## Recommended Dimension Orders for NetCDF Variables
+
+| VAAC| Order of Dimensions | Notes |
+|--------|------------------|-------|
+| Toulouse | threshold, T (time), Z (flight_level), Y (latitude), X (longitude) | Follows CF convention recommendation to put non-spatiotemporal dimensions first. |
+| London   | T (time), threshold, Z (flight_level), Y (latitude), X (longitude) | Optimized for API requests that primarily access data by time. |
+
+
+
+### Additional Discussion
+
+A similar discussion exists in the [CF Convention discussion repository](https://github.com/cf-convention/discuss), where it is suggested to:
+- Keep the recommended CF order of dimensions.
+- Use **chunking** in NetCDF files to match typical access patterns.
 
 
 
@@ -246,16 +275,6 @@ ATTRIBUTES
 * no appropriate standard_name exists with CF name tables for ash probability of exceedance.
 * Toulouse and London have differing dimension orders. 
 
-### Dimension order
-
-The order of the dimensions can be important for some software packages that ingest the netcdf.
-From the CF convention, it is recommanded to use threshold as first dimension (VAAC Toulouse choice): « If any or all of the dimensions of a variable have the interpretations of "date or time" (T), "height or depth" (Z), "latitude" (Y), or "longitude" (X) then we recommend, but do not require (see Section 1.5, "Relationship to the COARDS Conventions"), those dimensions to appear in the relative order T, then Z, then Y, then X in the CDL definition corresponding to the file. All other dimensions should, whenever possible, be placed to the left of the spatiotemporal dimensions.»
-
-But, using time as first dimension is also expected to be more efficient if API requests tend to retrieve data by time (VAAC London choice).
-
-A similar discussion can be found in cf-convention discussion repository where keeping the recommended order is suggested as well as to using chunks in netcdf to match access patterns.
-
-VAAC London and VAAC Toulouse are both reluctant to change, to avoid a step back later, but highlight that difference in their documentations for end users.
 
 ## Flight Level
 
