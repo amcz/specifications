@@ -26,6 +26,11 @@ This document outlines the standards and conventions for creating [Climate and F
 * dimension order for probabilistic data is still under discussion
 
 
+## Summary of Differences
+
+- [grid centering](#grid_centering)
+- [dimension ordering in probabilistic files](#dimension_order)
+
 ## ✅Global Attributes
 
 ---
@@ -115,6 +120,7 @@ longitude: unlimited
 
 
 ### Dimension order
+<a id="dimension_order"></a>
 We recommend that software is designed so that dimension order does not matter.
 
 #### Recommended Dimension Order for NetCDF Variables according to CF convention
@@ -187,14 +193,6 @@ ATTRIBUTES
 
 ```
 
-## Horizontal grid resolution and specification
-
-* The base service standard resolution of the spatial grid is 0.25 degrees
-* Higher resolutions may be allowed
-* Currently some VAACs center their grids on X.0 while others center their grids on X.125.
-While it is preferential that VAACs define their grids so they can be easily overlapped, it is not possible
-currently for all VAACs to change their operational setup to allow this. However it seems that VAACs who have more
-frequent hand-offs do have similar setups. 
 
 ## Probabilistic File
 
@@ -204,14 +202,19 @@ Same coordinates as concentration file but with one additional coordinate.
   threshold
   Values: [0.2, 2, 5, 10]
   ATTRIBUTES
-    units : mg m-3
+    units : mg m-3  OR mg/m^3
     standard_name: volcanic_ash_air_concentration
     long_name: Threshold for exceedance probability
   ```
 
-  *  see alternative methods of specifying vertical coordinate
-  *  mg/m^3 may also be used
-  *  different ways of specifying reference time for time coordinate may be used
+
+*  different ways of specifying reference time for time coordinate may be used
+* The base service standard resolution of the spatial grid is 0.25 degrees but higher resolutions may be implemented.
+<a id='grid_centering'></a>
+* Currently some VAACs center their grids on X.0 while others center their grids on X.125.
+While it is preferential that VAACs define their grids so they can be easily overlapped, it is not possible
+currently for all VAACs to change their operational setup to allow this. However it seems that VAACs who have more
+frequent hand-offs do have similar setups. 
 
 
 ## 📊Main Data Variable
@@ -219,7 +222,6 @@ Same coordinates as concentration file but with one additional coordinate.
 ### Concentration File
 
 ```text
-ash_concentration (time, z, latitude, longitude)
 ash_concentration (time, flight_level, latitude, longitude)  # London and Toulouse
 ATTRIBUTES
    standard_name : mass_concentration_of_volcanic_ash_in_air
@@ -233,7 +235,6 @@ ATTRIBUTES
 
 ### Probabilistic File
 ```text
-ash_probability (threshold, time, z, latitude, longitude)  # Generic
 ash_probability (threshold, time, flight_level, latitude, longitude, # Toulouse
 ash_probability (time, threshold, flight_level, latitude, longitude) # London
 ATTRIBUTES
@@ -245,26 +246,7 @@ ATTRIBUTES
 * Toulouse and London have differing dimension orders. 
 
 
-## Flight Level
 
-Data variable which provides vertical levels in FL.
-
-
-```text
-flight_level (z)
-values [25, 75, 125, 175, 225, 275, 325, 375, 425, 475, 525, 575]
-ATTRIBUTES
-   standard_name : flight_level
-   long_name : flight level at center of vertical level
-   bounds : flight_level_bounds
-   units : hft 
-   comment : flight level is defined as altitude in hundreds of feet
-```
- * It has been clarified that hft, hecta-feet is CF compliant see https://github.com/cf-convention/cf-conventions/issues/620
- * no standard_name in CF tables
- * this data variable may be ommitted if flight_levels is utilized as a dimension/coordinate in the alternative formulation
- * London and Toulous utilize flight_level as a dimension/coordinate rather than a data variable
- * 07/31/2025 changed from flight_levels to flight_level
 
 ## Bounds Variables 
 
@@ -300,18 +282,6 @@ flight_level_bounds (z, bnds)
   ```
 
 ---
-## Alternative formulations
-
-### Alternative specification for vertical coordinate
-
-Some centers may use flight_level as the vertical coordinate and dimension in place of z. This may not work as well with some GIS software which may not recognize 100 ft as a CF compliant unit.
-
-### Alternative method for latitude and longitude dimension
-
-It is also CF compliant to define dimensions x, y instead of latitude, longitude.
-Then the latitude and longitude coordinates have dimensions  latitude(y) and longitude(x).
-
-
 ## ✅ Checkers
 
 - Validate with [CF Checker](https://github.com/cedadev/cf-checker)
