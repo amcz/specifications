@@ -357,7 +357,7 @@ For example, a time value may represent a period (start–end), or a latitude ma
 - Typically named `<coordinate>_bnds` (e.g., `time_bnds`, `latitude_bnds`)
 - Have one extra dimension (usually `bnds = 2`) for lower and upper limits
 - Linked to a coordinate variable using the `bounds` attribute
-
+---
 
 ### How It Fits Together
 
