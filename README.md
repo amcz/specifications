@@ -34,7 +34,6 @@ This document outlines the standards and conventions for creating [Climate and F
 
 - [global_attributes](#globa-attributes)
 - [event_type values](#event_type)  This needs to be resolved
-- [volcano_id missing value](#volcano_id_missing) This needs to be resolved
 - [grid centering](#grid_centering)
 - [dimension ordering in probabilistic files](#dimension_order)
 - [specification of reference time](#reference_time)
@@ -57,7 +56,7 @@ history             : date created
 volcano_id          : 300250
 ```
 * volcano_id should be taken from the Smithsonian list https://volcano.si.edu/projects/vaac-data/.
-* if volcano is unknown then 'none' should be used. This is still under discussion. It may need to be a number or nil. Toulouse currently uses 600000.  <a id="volcano_id_missing"></a>
+* if volcano is unknown then 999999 should be used <a id="volcano_id_missing"></a>
   
 
 ---
@@ -97,7 +96,7 @@ DISCUSSION
 ```
 
 reference           : URL for insitution / model
-volcanoname         : Bezymianny
+volcano_name         : Bezymianny
 release_location    : lat: XX.XXXN, lon: XX.XXXW
 meteorological_data : GFSQ  # short identifier for NWP data utilized
 WMO_category        : Volcanic Ash
