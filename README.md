@@ -39,10 +39,15 @@ This document outlines the standards and conventions for creating [Climate and F
 - [dimension ordering in probabilistic files](#dimension_order)
 - [specification of reference time](#reference_time)
 
+## Other discussion points
+VAACs should agree on a minimum concentration threshold (e.g., 0.01 mg/m³), below which all values are set to 0.
+
+This avoids storing negligible values (e.g., 1e-10 mg/m³) in the file.
+
 ## ✅Global Attributes
 
 ---
-Required
+#### Global attributes providing basic metadata -  Required
 ```text
 title               : Volcanic ash air concentration forecast
 Conventions         : "CF-1.9"  # or other
@@ -56,7 +61,7 @@ volcano_id          : 300250
   
 
 ---
-Required
+#### Global Attributes that indicate status - Required
 ```
 event_type              : TEST, OPERATIONAL, REAL EVENT, EXERCISE
 reportStatus            : NORMAL, CORRECTION
@@ -87,7 +92,7 @@ DISCUSSION
 ---
 
 
-For discussion - Recommended
+#### Global attributes providing extra metadata- Recommended
 
 ```
 
@@ -105,7 +110,7 @@ product_type        : volcanic ash forecast
 * if volcano is unknown then 'unknown' should be used for volcano_name
 * WMO_originator is a unique identifier for each VAAC
 
-global attributes which may be present
+#### Extra global attributes which may be present
 
 ```
 volcano_number   : redundant with volcano_id
