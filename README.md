@@ -18,6 +18,10 @@ This document outlines the standards and conventions for creating [Climate and F
 
 ## Summary of updates
 
+#### 25 March 2026
+* removed alternative formulations
+* created summary of differences and points that need to be decided
+
 #### 13 March 2026
 * Added specifications for London and Toulouse harmonized format.
 * It was clarified that hft (hecta-feet) is a CF compliant unit
@@ -29,6 +33,8 @@ This document outlines the standards and conventions for creating [Climate and F
 ## Summary of Differences
 
 - [global_attributes](#globa-attributes)
+- [event_type values](#event_type)  This needs to be resolved
+- [volcano_id missing value](#volcano_id_missing) This needs to be resolved
 - [grid centering](#grid_centering)
 - [dimension ordering in probabilistic files](#dimension_order)
 - [specification of reference time](#reference_time)
@@ -45,35 +51,42 @@ source              : VAAC [NAME] QVA   # for example VAAC LONDON QVA
 history             : date created
 volcano_id          : 300250
 ```
-* volcano id (vid) should be taken from the Smithsonian list https://volcano.si.edu/projects/vaac-data/.
-* if volcano is unknown then 'none' should be used
-* volcano_id was previously vid
+* volcano_id should be taken from the Smithsonian list https://volcano.si.edu/projects/vaac-data/.
+* if volcano is unknown then 'none' should be used. This is still under discussion <a id="volcano_id_missing"><\a>
   
 
 ---
 Required
 ```
-reportStatus            : NORMAL
-permissableUsage        : NON-OPERATIONAL
-permissableUsageReason  : TEST
+event_type              : TEST, OPERATIONAL, REAL EVENT, EXERCISE
+reportStatus            : NORMAL, CORRECTION
+permissableUsage        : NON-OPERATIONAL, OPERATIONAL
+permissableUsageReason  : TEST, EXERCISE
 reportStatus_definitions  : NORMAL: first issuance; CORRECTION: correction to previous issuance
 permissableUsage_definitions   : OPERATIONAL: data may be used for operational purposes, NON-OPERATIONAL: Data should not be used for operational purposes but may be used for other purposes
 permissableUsageReason_definitions  : EXERCISE: produced for an exercise, TEST: produced for a test, HYPOTHETICAL: produced for possible future event
 remarks                  :
 ```
 
-* reportStatus, permissableUsage, and permissableUsageReason are fields in the IWXXM file which should be included in the netcdf so end users receive the same information.
-* these were previously status, usage, reason
-* remarks have also been added to iwxxm and should be available in netcdf.
+`event_type` is used in the API for filtering. `permissableUsage` and `permissableUsageReason` are in the IWXXM schema. 
+
+## Rules
+
+| Condition                     | `permissableUsage`   | `permissableUsageReason` |
+|------------------------------|----------------------|---------------------------|
+| `event_type == TEST`         | NON-OPERATIONAL      | TEST                      |
+| `event_type == EXERCISE`     | NON-OPERATIONAL      | EXERCISE                  |
+| `event_type == OPERATIONAL`   | OPERATIONAL          |                           |
 
 
-**points for discussion**
-London and Toulouse VAAC propose using event_type to  replace PermissibleUsage and PermissibleUsageReason that are used in IWXXM files
-```
-event_type : TEST      # REAL EVENT (or OPERATIONAL), TEST, EXERCISE are allowed
-```
+<a id='event_type'></a>
+DISCUSSION
+* for the `event_type` we should  agree to use either 'REAL EVENT' or 'OPERATIONAL' as this will be used to filter.
+  
 
 ---
+
+
 For discussion - Recommended
 
 ```
@@ -92,7 +105,12 @@ product_type        : volcanic ash forecast
 * if volcano is unknown then 'unknown' should be used for volcano_name
 * WMO_originator is a unique identifier for each VAAC
 
-Other global attributes could potentially be added.
+global attributes which may be present
+
+```
+volcano_number   : redundant with volcano_id
+
+```
 
 ## 📦Dimensions
 
