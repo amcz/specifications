@@ -52,7 +52,7 @@ history             : date created
 volcano_id          : 300250
 ```
 * volcano_id should be taken from the Smithsonian list https://volcano.si.edu/projects/vaac-data/.
-* if volcano is unknown then 'none' should be used. This is still under discussion <a id="volcano_id_missing"><\a>
+* if volcano is unknown then 'none' should be used. This is still under discussion. It may need to be a number or nil. Toulouse currently uses 600000.  <a id="volcano_id_missing"></a>
   
 
 ---
