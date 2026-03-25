@@ -11,7 +11,7 @@ This document outlines the standards and conventions for creating [Climate and F
 - [Flight Levels](#flight-levels)
 - [Bounds Variables](#bounds-variables)
 - [Defining Mapping](#defining-mapping)
-- [Alternative Formulations](#alternative-formulations)
+- [netcdf tutorial](#tutorial)
 - [References](#-references)
 
 ---
@@ -302,6 +302,72 @@ flight_level_bounds (flight_level, bnds)
       long_name : Spherical earth with radius 6371.2 km
       comment : This grid uses spherical Earth approximation. No EPSG code applies.
   ```
+---
+## NetCDF File Structure (Simple Overview)
+<a id='tutorial'></a>
+
+A NetCDF file is a self-describing, binary format used to store scientific data. It contains both the data and the metadata needed to understand it.
+
+### Main Components
+
+A NetCDF file is made up of three main parts:
+
+#### 1. Dimensions
+Dimensions define the size and shape of the data.
+
+Examples:
+- `time` (e.g., 10 steps)
+- `latitude` (e.g., 180 points)
+- `longitude` (e.g., 360 points)
+- `flight_level` (e.g., 12 levels)
+
+---
+
+#### 2. Variables
+Variables store the actual data and coordinate information.
+
+There are two types:
+
+- **Coordinate variables**: define the axes (e.g., `time`, `latitude`, `longitude`)
+- **Data variables**: contain the measured or modeled data (e.g., `ash_probability`)
+
+
+---
+
+#### 3. Attributes
+Attributes provide metadata (information about the data).
+* Attributes can be associated with the entire file (global attributes)
+* Attributes can also be associated with individual data variables (variable attributes)
+They can describe:
+- Units (e.g., `mg/m³`)
+- Variable meaning (`long_name`)
+- File-level information (e.g., title, source)
+
+---
+
+#### 4. Bounds (`bnds`) Variables
+
+Bounds variables define the edges (limits) of coordinate values.
+
+They are used when coordinates represent **intervals** rather than single points.  
+For example, a time value may represent a period (start–end), or a latitude may represent a grid cell.
+
+### Key Points
+
+- Typically named `<coordinate>_bnds` (e.g., `time_bnds`, `latitude_bnds`)
+- Have one extra dimension (usually `bnds = 2`) for lower and upper limits
+- Linked to a coordinate variable using the `bounds` attribute
+
+
+### How It Fits Together
+
+- **Dimensions** define the grid
+- **Coordinate variables** give meaning to each axis
+- **Data variables** store values on that grid
+- **Attributes** describe the data
+
+Together, these make the file **self-describing**, so users and software can interpret the data without external documentation.
+
 
 ---
 ## ✅ Checkers
