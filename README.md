@@ -28,8 +28,10 @@ This document outlines the standards and conventions for creating [Climate and F
 
 ## Summary of Differences
 
+- [global_attributes](#globa-attributes)
 - [grid centering](#grid_centering)
 - [dimension ordering in probabilistic files](#dimension_order)
+- [specification of reference time](#reference_time)
 
 ## ✅Global Attributes
 
@@ -207,7 +209,7 @@ Same coordinates as concentration file but with one additional coordinate.
     long_name: Threshold for exceedance probability
   ```
 
-
+<a id="reference_time"></a>
 *  different ways of specifying reference time for time coordinate may be used
 * The base service standard resolution of the spatial grid is 0.25 degrees but higher resolutions may be implemented.
 <a id='grid_centering'></a>
@@ -246,25 +248,21 @@ ATTRIBUTES
 * Toulouse and London have differing dimension orders. 
 
 
-
-
 ## Bounds Variables 
 
 These define spatial and temporal bounds for CF compliance.
 
 ```text
-time_bounds (time bnds)
+time_bounds (time, bnds)
 
 latitude_bounds (latitude, bnds)
 
 longitude_bounds (longitude, bnds)
 
-z_bounds (z, bnds)
-
-flight_level_bounds (z, bnds)
+flight_level_bounds (flight_level, bnds)
 ```
 * If not using temporal averaging then time_bounds does not need to be defined.
-* z_bounds not needed if using alternative method of specifying vertical coordinate.
+
 ---
 
 ## Defining Mapping 
