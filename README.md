@@ -94,20 +94,25 @@ Other global attributes could potentially be added.
 ```text
 bnds: 2
 time: unlimited
-z: 12    # alternative flight_level
+flight_level: unlimited   
 latitude: unlimited
 longitude: unlimited
 ```
 
 ### Probabilistic File
 ```text
-threshold : 4
+threshold : unlimited
 bnds : 2
 time: unlimited
-z : 12   # alternative flight_level
+flight_level : unlimited   
 latitude: unlimited
 longitude: unlimited
 ```
+
+* For the base service level, the `flight_level` dimension has a size of 12. However, it is recommended that software be designed to handle varying numbers and values of flight levels, to accommodate future changes and evolution of the service.
+* For the base service level, the `threshold` dimension has a size of 4. However it is recommended that software be designed to handle varying numbers and values of threshold to accomodate future changes and evoluation of the service.
+* for the base service level, `latitude` and `longitude` dimensions will have variable sizes.
+
 
 ### Dimension order
 We recommend that software is designed so that dimension order does not matter.
@@ -116,31 +121,22 @@ We recommend that software is designed so that dimension order does not matter.
 
 According to the CF convention, the recommended order for spatiotemporal dimensions is:
 
-1. **T** – Time (`date or time`)
-2. **Z** – Height or depth
+1. **T** – time
+2. **Z** – flight_level
 3. **Y** – Latitude
 4. **X** – Longitude
 
 All other dimensions (e.g., `threshold`, `ensemble`, etc.) should, whenever possible, be placed **to the left** of the spatiotemporal dimensions.
 However using time as a first dimension is expected to be more efficient if the API requests tend to retrieve data by time.
-Consequently 
+Consequently some VAACs have opted to use time as the first dimension.
 
 ## Recommended Dimension Orders for NetCDF Variables
 
-| VAAC| Order of Dimensions | Notes |
-|--------|------------------|-------|
-| Toulouse | threshold, T (time), Z (flight_level), Y (latitude), X (longitude) | Follows CF convention recommendation to put non-spatiotemporal dimensions first. |
-| London   | T (time), threshold, Z (flight_level), Y (latitude), X (longitude) | Optimized for API requests that primarily access data by time. |
-
-
-
-### Additional Discussion
-
-A similar discussion exists in the [CF Convention discussion repository](https://github.com/cf-convention/discuss), where it is suggested to:
-- Keep the recommended CF order of dimensions.
-- Use **chunking** in NetCDF files to match typical access patterns.
-
-
+| VAAC | Data Variable | Order of Dimensions | Notes |
+|------|---------------|---------------------|-------|
+| Toulouse | ash_probability | threshold, time, flight_level, latitude, longitude | Follows CF convention recommendation to put non-spatiotemporal dimensions first. |
+| London   | ash_probability | time, threshold, flight_level, latitude, longitude | Optimized for API requests that primarily access data by time. |
+| All      | ash_concentration | time, flight_level, latitude, longitude |   |
 
 ---
 
@@ -149,7 +145,7 @@ and their associated dimensions
 
 ###  Concentration File
 ```text
-latitude (latitude)
+latitude(latitude)
 ATTRIBUTES
    standard_name : latitude
    units :  degrees_north
@@ -157,7 +153,7 @@ ATTRIBUTES
    long_name : latitude degrees north from the equator
    axis : Y 
 
-longitude (longitude)
+longitude(longitude)
 ATTRIBUTES
    standard_name : longitude
    units :  degrees_east
@@ -178,17 +174,9 @@ bnds (bnds)
 Type: int32
 Values: 0,1
 
-```
 
-#### Vertical Coordinate
-
-
-
-**London and Toulouse are using the following**
-
-```
 flight_level(flight_level) ;
-values [25, 75, 125, 175, 225, 275, 325, 375, 425, 475, 525, 575]
+base service values [25, 75, 125, 175, 225, 275, 325, 375, 425, 475, 525, 575]
 ATTRIBUTES
 		long_name       : flight level 
 		units           : hectofeet (or hectoft, hft, etc...)
@@ -197,30 +185,11 @@ ATTRIBUTES
 		reference_datum : sea level pressure datum of 1013.25 hPa 
 		bounds          : flight_level_bounds 
 
-flight_level_bounds(flight_level, bnds)
 ```
-
-**discussion**
-Propose using flight_level as the coordinate, but keeping z as the dimension.
-
-
-Alternative forumlation
-```
-z(z)
-ATTRIBUTES
-  units : feet
-  standard_name : height_above_mean_sea_level
-  positive : up
-  bounds : z_bounds
-  long_name : altitude at center of vertical level
-  axis : Z
-```
-
-
 
 ## Horizontal grid resolution and specification
 
-* The standard resolution of the spatial grid is 0.25 degrees
+* The base service standard resolution of the spatial grid is 0.25 degrees
 * Higher resolutions may be allowed
 * Currently some VAACs center their grids on X.0 while others center their grids on X.125.
 While it is preferential that VAACs define their grids so they can be easily overlapped, it is not possible
