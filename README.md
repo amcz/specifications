@@ -161,7 +161,7 @@ According to the CF convention, the recommended order for spatiotemporal dimensi
 3. **Y** – Latitude
 4. **X** – Longitude
 
-All other dimensions (e.g., `threshold`, `ensemble`, etc.) should, whenever possible, be placed **to the left** of the spatiotemporal dimensions.
+All other dimensions (e.g., `threshold` etc.) should, whenever possible, be placed **to the left** of the spatiotemporal dimensions.
 However using time as a first dimension is expected to be more efficient if the API requests tend to retrieve data by time.
 Consequently some VAACs have opted to use time as the first dimension.
 
