@@ -52,12 +52,13 @@ title               : Volcanic ash air concentration forecast
 Conventions         : "CF-1.9"  # or other
 institution         : name of originating institution
 source              : VAAC [NAME] QVA   # for example VAAC LONDON QVA
-history             : date created
+history             : creation history (string)
 volcano_id          : 300250
 ```
 * volcano_id should be taken from the Smithsonian list https://volcano.si.edu/projects/vaac-data/.
 * if volcano is unknown then 999999 should be used <a id="volcano_id_missing"></a>
-  
+* history is a string that documents how the file was created. At the least, it should document the time of creation.
+ 
 
 ---
 #### Global Attributes that indicate status - Required
@@ -86,7 +87,8 @@ remarks                  :
 <a id='event_type'></a>
 DISCUSSION
 * for the `event_type` we should  agree to use either 'REAL EVENT' or 'OPERATIONAL' as this will be used to filter.
-  
+* `event_type` is redundant with `permissableUsage` and `permissableUsageReason`
+* Including all three allows to be consistent with the IWXXM schema and API. 
 
 ---
 
@@ -102,19 +104,19 @@ meteorological_data : GFSQ  # short identifier for NWP data utilized
 WMO_category        : Volcanic Ash
 WMO_originator      : KNES   # unique VAAC identifier
 product_type        : volcanic ash forecast
-release_location    : "lat: XX.XXXN, lon: XX.XXXW"
+issue_time          : when forecasters issued the data (in iso 8601 format, e.g. 2026-03-04T13:34:00Z)
 
 ```
-
 * volcano names should be taken from the Smithsonian list https://volcano.si.edu/projects/vaac-data/.
 * if volcano is unknown then 'unknown' should be used for volcano_name
-* WMO_originator is a unique identifier for each VAAC
+* WMO_originator is a unique identifier for each VAAC. (e.g. KNES refers to Washington VAAC). 
 
-#### Extra global attributes which may be present
+It is recommended that volcano_id be the primary way of identifying volcanic source as volcano names may
+have different spellings or contain special characters.
+
+#### Extra global attributes may be present
 
 ```
-volcano_number   : redundant with volcano_id
-issue_time       : when forecasters issued the data (in iso 8601 format, e.g. 2026-03-04T13:34:00Z)
 
 ```
 
