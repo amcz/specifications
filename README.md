@@ -178,7 +178,7 @@ Consequently some VAACs have opted to use time as the first dimension.
 ## 🧭Coordinate Variables
 and their associated dimensions
 
-###  Concentration File
+###  Concentration File Coordinate Variables
 ```text
 latitude(latitude)
 ATTRIBUTES
@@ -223,7 +223,7 @@ ATTRIBUTES
 ```
 
 
-## Probabilistic File
+## Probabilistic File Coordinate variables
 
 Same coordinates as concentration file but with one additional coordinate.
 
@@ -248,7 +248,7 @@ frequent hand-offs do have similar setups.
 
 ## 📊Main Data Variable
 
-### Concentration File
+### Concentration File Data Variable
 
 ```text
 ash_concentration (time, flight_level, latitude, longitude)  # London and Toulouse
@@ -262,7 +262,7 @@ ATTRIBUTES
 * use appropriate description in cell methods
 * mg/m^3 is also CF compliant unit specification
 
-### Probabilistic File
+### Probabilistic File Data Variable
 ```text
 ash_probability (threshold, time, flight_level, latitude, longitude, # Toulouse
 ash_probability (time, threshold, flight_level, latitude, longitude) # London
@@ -277,7 +277,7 @@ ATTRIBUTES
 
 ## Bounds Variables 
 
-These define spatial and temporal bounds for CF compliance.
+These define spatial and temporal bounds for CF compliance. They are the same for the probabilistic and concentration files.
 
 ```text
 time_bounds (time, bnds)
