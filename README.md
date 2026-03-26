@@ -143,7 +143,7 @@ longitude: unlimited
 ```
 
 * For the base service level, the `flight_level` dimension has a size of 12. However, it is recommended that software be designed to handle varying numbers and values of flight levels, to accommodate future changes and evolution of the service.
-* For the base service level, the `threshold` dimension has a size of 4. However it is recommended that software be designed to handle varying numbers and values of threshold to accomodate future changes and evoluation of the service.
+* For the base service level, the `threshold` dimension has a size of 4. However it is recommended that software be designed to handle varying numbers and values of threshold to accomodate future changes and evolution of the service.
 * for the base service level, `latitude` and `longitude` dimensions will have variable sizes.
 
 
