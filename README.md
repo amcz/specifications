@@ -157,7 +157,7 @@ No dimension is required to be defined as unlimited.
 
 ### Dimension order
 <a id="dimension_order"></a>
-We recommend that software is designed so that dimension order does not matter.
+We recommend that software be sensible to dimension order as it may be different across VAACs.
 
 #### Recommended Dimension Order for NetCDF Variables according to CF convention
 
