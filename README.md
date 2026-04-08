@@ -20,6 +20,8 @@ This document outlines the standards and conventions for creating [Climate and F
 
 #### 6 April 2026
 * fixed description of dimension sizes
+* remove bnds coordinate variable and specify bounds variables by `X_bnds (X, 2)`
+  
 
 #### 25 March 2026
 * removed alternative formulations
@@ -210,11 +212,6 @@ ATTRIBUTES
   bounds : time_bounds
   axis : T
 
-bnds (bnds)
-Type: int32
-Values: 0,1
-
-
 flight_level(flight_level) ;
 base service values [25, 75, 125, 175, 225, 275, 325, 375, 425, 475, 525, 575]
 ATTRIBUTES
@@ -285,15 +282,18 @@ ATTRIBUTES
 These define spatial and temporal bounds for CF compliance. They are the same for the probabilistic and concentration files.
 
 ```text
-time_bounds (time, bnds)
+time_bounds (time, 2)
 
-latitude_bounds (latitude, bnds)
+latitude_bounds (latitude, 2)
 
-longitude_bounds (longitude, bnds)
+longitude_bounds (longitude, 2)
 
-flight_level_bounds (flight_level, bnds)
+flight_level_bounds (flight_level, 2)
 ```
 * If not using temporal averaging then time_bounds does not need to be defined.
+
+Before 8 April 2026, a bnds coordinate variable of size 2 was defined and `time_bounds (time, bnds)` was used.
+File construction was simplified by removing the bnds coordinate variable and simpley specifying `time_bounds (time,2)`
 
 ---
 
