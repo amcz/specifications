@@ -18,6 +18,9 @@ This document outlines the standards and conventions for creating [Climate and F
 
 ## Summary of updates
 
+#### 6 April 2026
+* fixed description of dimension sizes
+
 #### 25 March 2026
 * removed alternative formulations
 * created summary of differences and points that need to be decided
@@ -134,13 +137,15 @@ longitude: unlimited
 
 ### Probabilistic File
 ```text
-threshold : unlimited
+threshold : Nth
 bnds : 2
-time: unlimited
-flight_level : unlimited   
-latitude: unlimited
-longitude: unlimited
+time: Nt
+flight_level : Nz   
+latitude: Ny
+longitude: Nx
 ```
+Dimension sizes are generally fixed within a given file but may vary between files.
+No dimension is required to be defined as unlimited.
 
 * For the base service level, the `flight_level` dimension has a size of 12. However, it is recommended that software be designed to handle varying numbers and values of flight levels, to accommodate future changes and evolution of the service.
 * For the base service level, `time` dimension has a size of 9. However, it is recommended that software be designed to handle varying number of time values to accommodate future changes and evolution of the service. 
