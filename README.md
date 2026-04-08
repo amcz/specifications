@@ -21,6 +21,7 @@ This document outlines the standards and conventions for creating [Climate and F
 #### 6 April 2026
 * fixed description of dimension sizes
 * remove bnds coordinate variable and specify bounds variables by `X_bnds (X, 2)`
+* provided more detail on specification of time unit
   
 
 #### 25 March 2026
@@ -223,7 +224,10 @@ ATTRIBUTES
 		bounds          : flight_level_bounds 
 
 ```
+For the time variable, any CF compliant unit may be utilized. Other examples include
 
+* `units: minutes since YYYY-MM-DD HH:MM:SSZ`
+* `units: seconds since YYYY-MM-DD HH:MM:SSZ`
 
 ## Probabilistic File Coordinate variables
 
