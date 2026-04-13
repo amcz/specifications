@@ -41,11 +41,12 @@ This document outlines the standards and conventions for creating [Climate and F
 
 ## Summary of Differences
 
-- [global_attributes](#globa-attributes)
+- [global_attributes](#globa-attributes) Set of required attributes needs to be decided
 - [event_type values](#event_type)  This needs to be resolved
 - [grid centering](#grid_centering)
 - [dimension ordering in probabilistic files](#dimension_order)
 - [specification of reference time](#reference_time)
+- Use of bnds coordinate variable
 
 ## Other discussion points
 VAACs should agree on a minimum concentration threshold (e.g., 0.01 mg/m³), below which all values are set to 0.
