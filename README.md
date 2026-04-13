@@ -18,6 +18,9 @@ This document outlines the standards and conventions for creating [Climate and F
 
 ## Summary of updates
 
+#### 13 April 2026
+* Added bnds coordinate variable back in. 
+
 #### 6 April 2026
 * fixed description of dimension sizes
 * remove bnds coordinate variable and specify bounds variables by `X_bnds (X, 2)`
@@ -221,7 +224,11 @@ ATTRIBUTES
 		axis            : Z 
 		positive        : up 
 		reference_datum : sea level pressure datum of 1013.25 hPa 
-		bounds          : flight_level_bounds 
+		bounds          : flight_level_bounds
+
+bnds(bnds)
+TYPE: int32
+values: 0,1
 
 ```
 For the time variable, any CF compliant unit may be utilized. Other examples include
@@ -286,18 +293,24 @@ ATTRIBUTES
 These define spatial and temporal bounds for CF compliance. They are the same for the probabilistic and concentration files.
 
 ```text
-time_bounds (time, 2)
+time_bounds (time, bnds)
 
-latitude_bounds (latitude, 2)
+latitude_bounds (latitude, bnds)
 
-longitude_bounds (longitude, 2)
+longitude_bounds (longitude, bnds)
 
-flight_level_bounds (flight_level, 2)
+flight_level_bounds (flight_level, bnds)
 ```
 * If not using temporal averaging then time_bounds does not need to be defined.
 
-Before 8 April 2026, a bnds coordinate variable of size 2 was defined and `time_bounds (time, bnds)` was used.
-File construction was simplified by removing the bnds coordinate variable and simpley specifying `time_bounds (time,2)`
+A bnds coordinate of size 2 may be defined.
+Alternatively the bnds coordinate variable may be omitted and bounds can be specified simply with 
+```
+time_bounds (time, 2)
+```
+
+Some examples are provided here
+https://cf-convention.github.io/Data/cf-conventions/cf-conventions-1.13/cf-conventions.html#bounds-one-d
 
 ---
 
