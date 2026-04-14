@@ -49,6 +49,8 @@ This document outlines the standards and conventions for creating [Climate and F
 - Use of bnds coordinate variable
 
 ## Other discussion points
+What value should be used for volcano_id when volcano is unknown
+
 VAACs should agree on a minimum concentration threshold (e.g., 0.01 mg/m³), below which all values are set to 0.
 
 This avoids storing negligible values (e.g., 1e-10 mg/m³) in the file.
@@ -66,7 +68,9 @@ history             : creation history (string)
 volcano_id          : 300250
 ```
 * volcano_id should be taken from the Smithsonian list https://volcano.si.edu/projects/vaac-data/.
-* if volcano is unknown then 999999 should be used <a id="volcano_id_missing"></a>
+* if volcano is unknown then what should be used?
+    * 999999 should be used <a id="volcano_id_missing"></a>
+
 * history is a string that documents how the file was created. At the least, it should document the time of creation.
  
 
