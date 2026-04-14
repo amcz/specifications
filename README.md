@@ -48,6 +48,7 @@ This document outlines the standards and conventions for creating [Climate and F
 - [specification of reference time](#reference_time)
 - Use of bnds coordinate variable
 - Some VAACs may be using a string such as '999999' for volcano_id when volcano is unknown.
+- Most VAACs use -180 to 180 for longitude values. Some VAACs use 0 to 360
 
 ## Other discussion points
 What value should be used for volcano_id when volcano is unknown
@@ -55,6 +56,10 @@ What value should be used for volcano_id when volcano is unknown
 VAACs should agree on a minimum concentration threshold (e.g., 0.01 mg/m³), below which all values are set to 0.
 
 This avoids storing negligible values (e.g., 1e-10 mg/m³) in the file.
+
+* Longitudes between -180 and 180.  vs 0 and 360.
+    * If using WGS84 (EPSG:4326) to plot data, bounds are -180 to 180.
+    * Most using -180 to 180.
 
 ## ✅Global Attributes
 
