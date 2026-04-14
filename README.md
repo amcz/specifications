@@ -69,7 +69,8 @@ volcano_id          : 300250
 ```
 * volcano_id should be taken from the Smithsonian list https://volcano.si.edu/projects/vaac-data/.
 * if volcano is unknown then what should be used?
-    * 999999 should be used <a id="volcano_id_missing"></a>
+    * 999999 is a candidate <a id="volcano_id_missing"></a>
+	
 
 * history is a string that documents how the file was created. At the least, it should document the time of creation.
  
