@@ -87,11 +87,11 @@ remarks                  :
 ```
 * remarks may just be a generic message if VAAC workflow does not allow for adding remarks.
 
-`event_type` is used in the API for filtering. `permissableUsage` and `permissableUsageReason` are in the IWXXM schema. 
+`event_type` is used in the API for filtering. `permissibleUsage` and `permissibleUsageReason` are in the IWXXM schema. 
 
 ## Rules
 
-| Condition                     | `permissableUsage`   | `permissableUsageReason` |
+| Condition                     | `permissibleUsage`   | `permissibleUsageReason` |
 |------------------------------|----------------------|---------------------------|
 | `event_type == TEST`         | NON_OPERATIONAL      | TEST                      |
 | `event_type == EXERCISE`     | NON_OPERATIONAL      | EXERCISE                  |
@@ -101,7 +101,7 @@ remarks                  :
 <a id='event_type'></a>
 DISCUSSION
 * for the `event_type` we should  agree to use either 'REAL EVENT' or 'OPERATIONAL' as this will be used to filter.
-* `event_type` is redundant with `permissableUsage` and `permissableUsageReason`
+* `event_type` is redundant with `permissibleUsage` and `permissibleUsageReason`
 * Including all three allows to be consistent with the IWXXM schema and API. 
 
 ---
