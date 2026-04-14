@@ -78,13 +78,14 @@ volcano_id          : 300250 (string)
 ```
 event_type              : TEST, OPERATIONAL, REAL EVENT, EXERCISE
 reportStatus            : NORMAL, CORRECTION
-permissableUsage        : NON_OPERATIONAL, OPERATIONAL
-permissableUsageReason  : TEST, EXERCISE
+permissibleUsage        : NON_OPERATIONAL, OPERATIONAL
+permissibleUsageReason  : TEST, EXERCISE
 reportStatus_definitions  : NORMAL: first issuance; CORRECTION: correction to previous issuance
-permissableUsage_definitions   : OPERATIONAL: data may be used for operational purposes, NON-OPERATIONAL: Data should not be used for operational purposes but may be used for other purposes
-permissableUsageReason_definitions  : EXERCISE: produced for an exercise, TEST: produced for a test, HYPOTHETICAL: produced for possible future event
+permissibleUsage_definitions   : OPERATIONAL: data may be used for operational purposes, NON-OPERATIONAL: Data should not be used for operational purposes but may be used for other purposes
+permissibleUsageReason_definitions  : EXERCISE: produced for an exercise, TEST: produced for a test, HYPOTHETICAL: produced for possible future event
 remarks                  :
 ```
+* remarks may just be a generic message if VAAC workflow does not allow for adding remarks.
 
 `event_type` is used in the API for filtering. `permissableUsage` and `permissableUsageReason` are in the IWXXM schema. 
 
