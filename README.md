@@ -47,6 +47,7 @@ This document outlines the standards and conventions for creating [Climate and F
 - [dimension ordering in probabilistic files](#dimension_order)
 - [specification of reference time](#reference_time)
 - Use of bnds coordinate variable
+- Some VAACs may be using a string such as '999999' for volcano_id when volcano is unknown.
 
 ## Other discussion points
 What value should be used for volcano_id when volcano is unknown
@@ -65,13 +66,10 @@ Conventions         : "CF-1.9"  # or other
 institution         : name of originating institution
 source              : VAAC [NAME] QVA   # for example VAAC LONDON QVA
 history             : creation history (string)
-volcano_id          : 300250
+volcano_id          : 300250 (string)
 ```
 * volcano_id should be taken from the Smithsonian list https://volcano.si.edu/projects/vaac-data/.
-* if volcano is unknown then what should be used?
-    * 999999 is a candidate <a id="volcano_id_missing"></a>
-	
-
+* if volcano is unknown then string should be empty
 * history is a string that documents how the file was created. At the least, it should document the time of creation.
  
 
