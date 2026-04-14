@@ -94,7 +94,7 @@ remarks                  :
 |------------------------------|----------------------|---------------------------|
 | `event_type == TEST`         | NON-OPERATIONAL      | TEST                      |
 | `event_type == EXERCISE`     | NON-OPERATIONAL      | EXERCISE                  |
-| `event_type == OPERATIONA or REAL EVENT`   | OPERATIONAL          |                           |
+| `event_type == OPERATIONA or REAL EVENT`   | OPERATIONAL          |  does not exist in file |
 
 
 <a id='event_type'></a>
