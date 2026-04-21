@@ -18,6 +18,9 @@ This document outlines the standards and conventions for creating [Climate and F
 
 ## Summary of updates
 
+#### 21 April 2026
+* updated unknown value for volcano_id to be 6000000
+
 #### 13 April 2026
 * Added bnds coordinate variable back in. 
 
@@ -74,9 +77,25 @@ history             : creation history (string)
 volcano_id          : 300250 (string)
 ```
 * volcano_id should be taken from the Smithsonian list https://volcano.si.edu/projects/vaac-data/.
-* if volcano is unknown then string should be empty
+* if volcano is unknown then use 600000. (see discussion below)
+* Some VAACs use 999999 as volcano_id for tests and exercises
 * history is a string that documents how the file was created. At the least, it should document the time of creation.
- 
+
+Discussions around what the volcano_id string should be if the volcano is unknown has included the following points.
+* using an empty string
+    * is consistent with IWXXM and some guidance 
+    * may cause unwanted behavior in  the API
+      ``` Users can query data for a specific volcano using their ID with a request URL of the form : {APIBaseURL}/collections/{collectionId}/locations/{locationId}
+      Where locationId is the volcano_id. If it is empty, then this is the same as the request : {APIBaseURL}/collections/{collectionId}/locations/
+      which returns information on all eruptions that currently have data. Therefore, it will not be possible to query data for an unknown volcano with an empty string in the URL.
+      ```
+  * 600000
+     * Is already used by Toulouse and Tokyo for unknown volcano
+  * 999999
+     * Is used by London for unknown volcano but they could switch to 999999
+     * Is used by some VAACs (Tokyo, Darwin) to indicate TEST or EXERCISE 
+
+
 
 ---
 #### Global Attributes that indicate status - Required
