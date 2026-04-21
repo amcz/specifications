@@ -101,17 +101,28 @@ Discussions around what the volcano_id string should be if the volcano is unknow
 #### Global Attributes that indicate status - Required
 ```
 event_type              : TEST, OPERATIONAL, REAL EVENT, EXERCISE
-reportStatus            : NORMAL, CORRECTION
-permissibleUsage        : NON_OPERATIONAL, OPERATIONAL
-permissibleUsageReason  : TEST, EXERCISE
+report_status            : NORMAL, CORRECTION
+permissible_usage        : NON_OPERATIONAL, OPERATIONAL
+permissible_usage_reason  : TEST, EXERCISE
+remarks                  : string
+```
+* remarks may be a generic message if workflow does not allow for adding remarks.
+
+#### Global attributes that indicate status - Optional
+```
+event_type              : TEST, OPERATIONAL (REAL EVENT), EXERCISE
+report_status           : NORMAL, CORRECTION
 reportStatus_definitions  : NORMAL: first issuance; CORRECTION: correction to previous issuance
 permissibleUsage_definitions   : OPERATIONAL: data may be used for operational purposes, NON-OPERATIONAL: Data should not be used for operational purposes but may be used for other purposes
 permissibleUsageReason_definitions  : EXERCISE: produced for an exercise, TEST: produced for a test, HYPOTHETICAL: produced for possible future event
-remarks                  :
 ```
-* remarks may just be a generic message if VAAC workflow does not allow for adding remarks.
 
+#### Discussion on event_type
 `event_type` is used in the API for filtering. `permissibleUsage` and `permissibleUsageReason` are in the IWXXM schema. 
+The table below gives the relationship between the `event_type` attributes and the `permissable_usage` and `permissable_usage_reason` attributes.
+Note that ```OPERATIONAL``` and ```REAL EVENT``` have the same meaning.
+Some VAACs are using ```OPERATIONAL``` to be consistent with the permissable_usage field while others use ```REAL EVENT``` in
+response to user feedback that this is a better description.
 
 ## Rules
 
