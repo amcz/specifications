@@ -20,6 +20,7 @@ This document outlines the standards and conventions for creating [Climate and F
 
 #### 21 April 2026
 * updated unknown value for volcano_id to be 6000000
+* change all attributes to snake case (e.g. permissable_usage) rather than camel case (e.g. permissableUsage)
 
 #### 13 April 2026
 * Added bnds coordinate variable back in. 
@@ -113,8 +114,8 @@ remarks                  : string
 event_type              : TEST, OPERATIONAL (REAL EVENT), EXERCISE
 report_status           : NORMAL, CORRECTION
 reportStatus_definitions  : NORMAL: first issuance; CORRECTION: correction to previous issuance
-permissibleUsage_definitions   : OPERATIONAL: data may be used for operational purposes, NON-OPERATIONAL: Data should not be used for operational purposes but may be used for other purposes
-permissibleUsageReason_definitions  : EXERCISE: produced for an exercise, TEST: produced for a test, HYPOTHETICAL: produced for possible future event
+permissible_usage_definitions   : OPERATIONAL: data may be used for operational purposes, NON-OPERATIONAL: Data should not be used for operational purposes but may be used for other purposes
+permissible_usage_reason_definitions  : EXERCISE: produced for an exercise, TEST: produced for a test, HYPOTHETICAL: produced for possible future event
 ```
 
 #### Discussion on event_type
