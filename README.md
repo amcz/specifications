@@ -18,6 +18,9 @@ This document outlines the standards and conventions for creating [Climate and F
 
 ## Summary of updates
 
+#### 28 May 2026
+* updated standard names for probabilistic fields. 
+
 #### 21 April 2026
 * updated unknown value for volcano_id to be 6000000
 * change all attributes to snake case (e.g. permissable_usage) rather than camel case (e.g. permissableUsage)
@@ -101,13 +104,13 @@ Discussions around what the volcano_id string should be if the volcano is unknow
 ---
 #### Global Attributes that indicate status - Required
 ```
-event_type              : TEST, OPERATIONAL, REAL EVENT, EXERCISE
-report_status            : NORMAL, CORRECTION
-permissible_usage        : NON_OPERATIONAL, OPERATIONAL
+
+permissible_usage      : NON_OPERATIONAL, OPERATIONAL
 permissible_usage_reason  : TEST, EXERCISE
 remarks                  : string
 ```
 * remarks may be a generic message if workflow does not allow for adding remarks.
+
 
 #### Global attributes that indicate status - Optional
 ```
