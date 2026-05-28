@@ -286,7 +286,7 @@ Same coordinates as concentration file but with one additional coordinate.
   Values: [0.2, 2, 5, 10]
   ATTRIBUTES
     units : mg m-3  OR mg/m^3
-    standard_name: volcanic_ash_air_concentration
+    standard_name: mass_concentration_of_volcanic_ash_in_air
     long_name: Threshold for exceedance probability
   ```
 
@@ -321,11 +321,11 @@ ATTRIBUTES
 ash_probability (threshold, time, flight_level, latitude, longitude, # Toulouse
 ash_probability (time, threshold, flight_level, latitude, longitude) # London
 ATTRIBUTES
-   standard_name : probability_of_exceedance_of_volcanic_ash_air_concentration
+   standard_name : probability_of_mass_concentration_of_volcanic_ash_in_air_above_threshold
    long_name : probability that volcanic ash concentration exceeds threshold as determined from model
    units : percent
 ```
-* no appropriate standard_name exists with CF name tables for ash probability of exceedance.
+* standard name has now been accepted. https://github.com/cf-convention/vocabularies/issues/303
 * Toulouse and London have differing dimension orders. 
 
 
