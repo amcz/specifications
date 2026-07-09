@@ -18,6 +18,14 @@ This document outlines the standards and conventions for creating [Climate and F
 
 ## Summary of updates
 
+#### 9 July 2026
+some people at CF-convention are discussing standard_name ending with xxx_above_threshold.
+They propose to replace the accepted probability_of_mass_concentration_of_volcanic_ash_in_air_above_threshold (already available in standard names) by probability_of_mass_concentration_of_volcanic_ash_in_air_at_or_above_threshold
+ Discussions can be followed #issue-303, #issue-308. 
+ * https://github.com/cf-convention/vocabularies/issues/303
+ * https://github.com/cf-convention/vocabularies/issues/308
+ 
+
 #### 28 May 2026
 * updated standard names for probabilistic fields. 
 
