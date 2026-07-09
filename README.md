@@ -71,6 +71,9 @@ What value should be used for volcano_id when volcano is unknown
 VAACs should agree on a minimum concentration threshold (e.g., 0.01 mg/m³), below which all values are set to 0.
 
 This avoids storing negligible values (e.g., 1e-10 mg/m³) in the file.
+One suggestion is to use about an order of magnitude down (0.01 mg/m3).
+Another suggestion is to round all concentrations to 2 decimal places which also puts smallest as 0.01 mg/m3.
+
 
 * Longitudes between -180 and 180.  vs 0 and 360.
     * If using WGS84 (EPSG:4326) to plot data, bounds are -180 to 180.
