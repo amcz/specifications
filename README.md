@@ -18,6 +18,10 @@ This document outlines the standards and conventions for creating [Climate and F
 
 ## Summary of updates
 
+#### 21 July 2026
+Consider if we send out a netcdf to indicate end of event with all 0 or empty fields.
+Indicate using permissable usage or permissable usage reason as 'end event'
+
 #### 9 July 2026
 some people at CF-convention are discussing standard_name ending with xxx_above_threshold.
 They propose to replace the accepted probability_of_mass_concentration_of_volcanic_ash_in_air_above_threshold (already available in standard names) by probability_of_mass_concentration_of_volcanic_ash_in_air_at_or_above_threshold
